@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'solidus', '~> 2.2.1'
+gem 'solidus', path: 'solidus'
 gem 'solidus_auth_devise'
 
 # Use postgresql as the database for Active Record

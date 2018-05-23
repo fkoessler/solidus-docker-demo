@@ -1,4 +1,4 @@
-FROM ruby:2.4-alpine
+FROM ruby:2.5-alpine
 
 # set some rails env vars
 ENV RAILS_ENV production
@@ -15,7 +15,8 @@ RUN apk add --update \
   libxml2-dev \
   libxslt-dev \
   postgresql-dev \
-  nodejs
+  nodejs \
+  git
 
 COPY Gemfile* ./
 RUN bundle install

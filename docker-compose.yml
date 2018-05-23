@@ -1,15 +1,19 @@
-version: '2'
+version: '3'
 services:
   app:
     build: .
-    command: bundle exec rails s -b 0.0.0.0
+    container_name: solidus_app
+    command: sh -c 'bundle install && bundle exec rails s -b 0.0.0.0'
+    working_dir: /home/solidus
     volumes:
       - .:/home/solidus
+      - solidus_gems:/bundle
+      - ../solidus:/home/solidus/solidus
     environment:
       - DB_HOST=db
       - DB_NAME=solidus-demo_development
       - DB_NAME_TEST=solidus-demo_test
-      - DB_PASSWORD=solidus-demo
+      - DB_PASSWORD=test1234
       - DB_PORT=5432
       - DB_USER=solidus-demo
       - RAILS_ENV=development
@@ -19,13 +23,17 @@ services:
       - db
 
   db:
-    image: postgres:9.6-alpine
+    image: postgres:9.4
+    container_name: solidus_db
     environment:
       - POSTGRES_DB=solidus-demo_development
-      - POSTGRES_PASSWORD=solidus-demo
+      - POSTGRES_PASSWORD=test1234
       - POSTGRES_USER=solidus-demo
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - solidus_db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
 
 volumes:
-  db_data:
+  solidus_db:
+  solidus_gems:
