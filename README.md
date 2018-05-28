@@ -14,7 +14,11 @@ Then run the following:
 
 ```
 docker-compose build
-docker-compose run --rm app bundle exec rake db:setup
+docker-compose run --rm app railties:install:migrations
+docker-compose run --rm app rake db:create
+docker-compose run --rm app rake db:migrate
+docker-compose run --rm app rake db:seed
+docker-compose run --rm app rake spree_sample:load
 ```
 
 ### Run development environment

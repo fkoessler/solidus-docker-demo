@@ -1,4 +1,4 @@
-FROM ruby:2.5-alpine
+FROM ruby:2.4.1-alpine
 
 # set some rails env vars
 ENV RAILS_ENV development
@@ -19,7 +19,7 @@ RUN apk add --update \
   git
 
 COPY Gemfile* ./
-RUN bundle install
+RUN gem install bundler
 
 ADD . .
 
