@@ -1,7 +1,7 @@
 FROM ruby:2.5-alpine
 
 # set some rails env vars
-ENV RAILS_ENV production
+ENV RAILS_ENV development
 ENV BUNDLE_PATH /bundle
 ENV APP_HOME /home/solidus
 
@@ -24,4 +24,3 @@ RUN bundle install
 ADD . .
 
 EXPOSE 3000
-CMD ["/sbin/my_init"]
