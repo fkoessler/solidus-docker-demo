@@ -3,7 +3,7 @@ services:
   app:
     build: .
     container_name: solidus_app
-    command: sh -c 'bundle install && bundle exec rails s -b 0.0.0.0'
+    command: sh -c 'rm -f tmp/pids/server.pid && bundle install && bundle exec rails s -b 0.0.0.0'
     working_dir: /home/solidus
     volumes:
       - .:/home/solidus

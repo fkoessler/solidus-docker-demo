@@ -8,3 +8,5 @@ gem 'pg', '~> 0.18'
 
 # Required for TimeZone data
 gem 'tzinfo-data'
+
+gem 'bullet'
