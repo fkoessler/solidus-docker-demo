@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_28_132472) do
+ActiveRecord::Schema.define(version: 2018_05_30_132472) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -721,6 +721,20 @@ ActiveRecord::Schema.define(version: 2018_05_28_132472) do
     t.index ["role_id"], name: "index_spree_roles_users_on_role_id"
     t.index ["user_id", "role_id"], name: "index_spree_roles_users_on_user_id_and_role_id", unique: true
     t.index ["user_id"], name: "index_spree_roles_users_on_user_id"
+  end
+
+  create_table "spree_settlements", force: :cascade do |t|
+    t.decimal "amount", precision: 12, scale: 4, default: "0.0", null: false
+    t.decimal "included_tax_total", precision: 12, scale: 4, default: "0.0", null: false
+    t.decimal "additional_tax_total", precision: 12, scale: 4, default: "0.0", null: false
+    t.string "acceptance_status"
+    t.text "acceptance_status_errors"
+    t.bigint "reimbursement_id"
+    t.bigint "reimbursement_type_id"
+    t.bigint "shipment_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["shipment_id"], name: "index_spree_settlements_on_shipment_id"
   end
 
   create_table "spree_shipments", id: :serial, force: :cascade do |t|
